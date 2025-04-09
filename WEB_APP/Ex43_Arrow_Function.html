@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    let foo = function(){
+        console.log("foo....");
+    }
+    foo();
+    
+    //arrow function(ES6 함수의 줄임표현)
+    // 위의 식을 아래로 표현가능
+    let bar = () => console.log("foo....");
+    bar();
+
+    // 매개변수 1개, return이 있는 함수
+    // 1. function, 파라미터 괄호 대신 화살표(=>) 사용
+    // 2. 추가적으로 중괄호, return 생략가능
+ // let foo2 = function(x){ return x;};
+    let foo2 = x => x+5;
+ // let hello = function(val) {retrun "hello" + val};
+    let hello = val => "hello" + val;
+
+
+    // 매개변수 2개 이상인 경우, 파라미터 괄호 생략불가
+ // function call(a,b);
+    let foo3 = (a,b) => a+b;
+
+    // 함수 안에 여러개의 논리가 필요할 경우
+    let foo4 = (a, b) =>{let c = 100; return a+b+c};
+
+    // 객체를 return할 경우, 소괄호 안에 중괄호를 작성
+    // 함수의 괄호와 객체의 괄호는 똑같이 중괄호 이기에 객체의 경우 소괄호 안에 중괄호를 작성
+    let foo5 = () => ({a:1, b:2, c:3});
+
+    // 즉시실행함수 (호출이 안돼도 실행)
+    // 1. 소괄호로 둘러싼다
+    // 2. 함수 뒤에 소괄호를 추가한다
+    (
+        function(){
+            console.log("즉시실행함수");
+        }() // 여기 괄호가 포인트
+    )
+
+    // 즉시실행함수의 줄임표현 (잘 안쓰임. 이런거 있다 정도만 알고 쓸때 gpt 찾아보삼삼)
+    // (
+    //     () => console.log("즉시실행함수") 
+    // )();
+
+    // JS Array의 다양한 함수들
+    // https://www.w3schools.com/jsref/jsref_obj_array.asp
+    /*
+        1. foreach  // 콜백함수 (콜백함수, 그 배열의 모든 값을 가져옴);
+                // Array.forEach(function(value, index, array){});
+                // 배열의 갯수만큼 함수 호출(callback 함수)
+                // 함수의 파라미터로 배열의 정보를 전달
+        2. map      // 가공된 새로운 배열 생성 (java와 동일)
+    */
+    
+    
+    //객체 for문 돌리기 (key값을 return)
+    // const ojb = {a:1, b:2, c:3}
+    // 1. for(let key in obj) {obj[key] ... } value값을 return
+    // 2. obj.a(키값) >> return 1(value값);
+    
+    let txt="";
+    const numbers=[45,5,8,16,25];
+
+    ///////////////////////////////////foreach/////////////////////////
+     function myFunc2(value, index, array){
+        txt = "(" + value + ")" + "[" + index + "]" + "[" + array + "]";
+        console.log(txt)
+     }
+
+     numbers.forEach(myFunc2);  // callback 배열 개수만큼 호출
+        // (45)[0][45,5,8,16,25]
+        // (5)[1][45,5,8,16,25]
+        // (8)[2][45,5,8,16,25]
+        // (16)[3][45,5,8,16,25]
+        // (25)[4][45,5,8,16,25]
+
+    ////////////////////////map////////////////////////////////
+    const number2 = [65, 44, 12, 4];
+    const newArr = number2.map(function(value, index, array){
+        return value * 10 + index;
+    });   // 새로운 배열 생성 (4) [650, 441, 122, 43]
+
+    console.log(newArr);
+
+    let evens = [2,4,6,8];
+
+    // let oods = evens.map(function(value){
+    //     return value+1;
+    // })
+    
+    let oods = evens.map(value => value+1) //화살표 표현식
+    console.log(oods);
+
+    let nums = evens.map((value, index) => value + index);
+    console.log(nums);
+
+    let arr = [];
+    evens.forEach(value=>{
+        if (value % 2 === 0){
+            arr.push(value);
+        } 
+    })  // map 써서 만들어라
+    console.log(arr);
+
+</script>
+</body>
+</html>
+​

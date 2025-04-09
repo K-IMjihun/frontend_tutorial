@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+    <script type = "text/javascript">
+        /*
+            template Literal : JS에서 문자열을 입력하는 형식 정의
+            ES6 = 백틱(back-tick) : `(esc 밑 물결표시 특문없이) 와 ${} 결합        
+                Java : System.out.printf("{0} - {1}", hello, world);
+        */
+
+        const str = "hello world";
+        const str2 = `hello world`;
+
+        const lang="javascript";
+        // const expression = `i love ${lang}!!!`;
+        // 함수 사용 가능
+        const expression = `i love ${lang.split('').reverse().join('')}!!!`;
+        console.log(expression);
+
+        // const arr = ['바람','비', '물'];
+        // consol.log(arr.join('-'));   // 출력 : 바람-비-물
+
+        
+        const user4 = {
+            name:"순신",
+            age:20
+        };
+        console.log(`사랑하는 ${user4.name} 은 이제 ${user4.age} 살입니다`);
+
+    </script>
+</body>
+
+</html>

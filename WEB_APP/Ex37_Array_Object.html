@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+ <meta charset="UTF-8">
+ <title>Insert title here</title>
+ <style>
+</style>
+
+</head>
+<body>
+    <script type="text/javascript">
+        let array = ['포도', '사과'];
+        console.log(array.toString());
+        console.log(array + " : default toString()");
+
+
+        for(let i = 0; i < array.length; i++){
+            console.log(array[i]);
+        }
+        for(let index in array){
+            console.log(array[index]);
+        }
+        for(let value of array){
+            console.log(value);
+        }
+
+        array[2]="바나나";  // 가능
+        console.log(array.toString() + ", " + array.length);
+        
+        // 권장 X but 가능
+        array[10] = "딸기";
+        console.log(array.toString() + ", " + array.length);
+
+        console.log(array[9] + " >> array[9]");
+        array[9] = "배";
+        console.log(array[9] + " >> array[9]");
+
+        // 권장 : let array = []; >> array.push("포도"); ....
+
+    </script>
+</body>
+
+</html>

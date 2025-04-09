@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script type="text/javascript">
+    /*
+        Java 예외처리
+        예외발생 시, 예외에 맞는 객체가 자동으로 생성(객체 예외 문제 메시지...) >> catch 로 전송
+
+        JS
+        JS 사건 발생 (click, mouseover, mouseout) 
+        >> 내부적으로 [event 정보를 담고있는 객체 생성]
+        >> Event 객체는 정보(발생시간, 주체, 영향 ...)를 가지며, 간단하게 사용할 수 있음 (window.event. ....)
+        >> Event 객체가 제공하는 함수 및 속성을 사용하여 제어하면 됨
+
+    */
+        window.onload = function(){
+            let btn = document.getElementById("mybtn");
+            btn.onclick = function(e){          // e : 이벤트 발생 시 생성된 event 객체의 주소를 받음
+                console.log(e.type);            // 이벤트 종류(click, mouseover ...)
+                console.log(e.target);          // 이벤트가 걸린 안쪽 요소("mybtn" 클릭 시, <sapn>눌러봐</sapn> 출력)
+                console.log(e.currentTarget);   // 이벤트가 발생한 요소, eventListner를 가지는 요소(<button id = "mybtn"><sapn>눌러봐</sapn></button>)
+                console.log("x좌표 : " + e.x + ", y좌표 : " + e.y);
+
+            }
+
+            let btn2 = document.getElementById("mybtn2");
+            let handler = function(event){
+                switch(event.type){
+                    case "click" : alert("클릭");
+                        break;
+                    case "mouseover" : event.target.style.backgroundColor = "red";
+                        break;
+                    case "mouseout" : event.target.style.backgroundColor = "";
+                        break;
+                }
+            }
+            btn2.onclick = handler;
+            btn2.onmouseover = handler;
+            btn2.onmouseout = handler;
+        }
+    </script>
+</head>
+
+<body>
+        <button id = "mybtn"><sapn>눌러봐</sapn></button>
+        <br>
+        <button id = "mybtn2">눌러봐2</button>
+</body>
+
+  
+</script>
+</html>
+

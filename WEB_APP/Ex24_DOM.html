@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+<div> A</div><div> B</div><div id = "me"> C</div>
+<ul id = "mychild"> <il>AA</il> <il>BB</il><il>CC</il></ul>
+
+<script type="text/javascript">
+    let menode;
+    menode = document.getElementById("me");
+    menode.style.backgroundColor = "gold";
+
+    let parentNode = menode.parentNode;     //body
+    parentNode = parentNode.style.backgroundColor = "blue";
+
+    let grandNode = parentNode.parentNode;  //html
+    grandNode = grandNode.style.backgroundColor = "green";
+
+    let my = document.getElementById("mychild");
+    console.log(my);
+    console.log(my.firstChild.nodeName);    //LI 대문자
+    console.log(my.firstChild.innerText);   // AA
+    
+    console.log(my.firstChild.nextSibling.innerText);   //BB
+    console.log(my.hasChildNodes);
+    console.log(my.childNodes); // 0 ~ 2 배열에 AA, BB, CC가 들어감
+    console.log(my.childNodes[0]);
+    console.log(my.childNodes.length);
+    // value 속성이 없는 : div, p, li, span
+    // innerHTML, innerText 를 사용하여 값을 가져온다
+        // ex : <div>방가방가</div>
+
+
+</script>
+</body>
+

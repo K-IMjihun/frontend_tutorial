@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+    
+    <script type = "text/javascript">
+    // ES6_구조분해 할당
+    const smith = {
+        lang:"javascript",
+        position:"frontEnd",
+        area:"강남",
+        hobby:"baseball",
+        age:90
+    }
+    const {lang, position, area, hobby, age} = smith;
+    // 이후, lang, position, area, hobby, age 변수명은 smith의 변수값을 가짐
+    console.log(lang);
+    console.log(position);
+    console.log(area);
+
+    const numbers = [11,22,33];
+    const [frist, second, third] = numbers;
+    console.log(frist); 
+    
+    const number3 = [1,2,3,4,5];
+    const[,,third3, fourth4] = number3;
+    console.log(third3);
+
+
+    </script>
+</body>
+
+</html>

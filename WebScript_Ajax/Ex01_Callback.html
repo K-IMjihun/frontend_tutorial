@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+    <p id = "demo"></p>
+
+        
+<script type="text/javascript">
+    function myDispalyer(something){
+        document.getElementById("demo").innerHTML = something;
+    }
+
+    function myCalculator(num1, num2, myCallback){
+        const sum = num1 + num2;
+        myCallback(sum);    // 콜백함수
+    }
+
+    myCalculator(5, 10, myDispalyer); // parameter 로 함수 전달 ...
+    // myCalculator(5, 10, myDispalyer());  // 괄호를 주면 즉시실행되어 안됨  
+
+</script>
+</body>
+</html>

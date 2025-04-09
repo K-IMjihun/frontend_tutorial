@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    
+    /*
+	[javascript]
+	1. for(let index in Arrays){Array[index]}
+	2. Object(JSON) : for(let key in jsonObj){jsonobj[key]}
+	3. array.forEach(function(value,index,array){}) 추가),  array.map()..
+	
+	[jquery] $().each() 반복문
+	1. $(selector).each(function(){});  >> ex) $('p').each(function(){ this활용 });
+	2. $(selector).each(function(index){ this활용 });
+	3. $(selector).each(function(index , element){ element });  ^^  초급자
+	
+	[jquery] $.each()
+	1. $.each(Array or Object , function(){ this 활용 });
+	2. $.each(Array or Object , function(index){ this 활용 });
+	3. $.each(Array or Object , function(index ,element){ element });  초급자
+	
+	parameter JSON 객체라면
+	let obj = {name:"홍길동" , age:100};
+	$(obj).each(function(key, value){ value });
+	$.each(obj , function(key , value){ value})
+   */
+
+    
+    $(function(){
+        // 1
+        $('p').each(function(){ // 모든 p 태그를 가져옴
+            //callback 함수에 parameter를 주지않으면 this를 통해 현재 p 정보를 가져와 사용
+            console.log("this : " + $(this).text());
+        });
+
+        // 2
+        $('p').each(function(index){//
+            console.log("index : " + index);
+            console.log($(this));
+
+            // attr = setAttribute(속성값(key, value) 추가)
+            // $(this).attr("id", "param-"+index);
+            // $(this).attr("style", "color:red");
+
+            //jquery는 모든 parameter를 json 객체 형태 지원하기 때문에, 위보다 아래형식 추천
+            $(this).attr(
+                {
+                "id":"param-"+index,
+                "style":"color:red"
+                }
+            );
+
+        });
+
+        // 3
+        $('p').each(function(index, element){
+            console.log("index : " + index);
+            console.log(element);
+            console.log($(element).text());
+
+        });
+
+        $('#btn').click(function(){
+            alert($('#param-0').text());
+        });
+    
+    
+        // 객체배열
+        const arr = [
+        {"name":"naver", "link":"http://www.naver.com"},
+        {"name":"daum", "link":"http://www.daum.net"},
+        {"name":"kosa", "link":"http://www.kosa.or.kr"}
+        ]
+
+        $.each(arr, function(index, obj){
+            console.log(obj.name + ", " + obj["link"]);
+            console.log(obj.name + ", " + obj.link);
+        })
+
+        const boardObj = {
+            values:[
+            {no:1, title:"hello world"},
+            {no:2, title:"korea"},
+            {no:3, title:"kosa world"}
+            ],
+            search:"검색"
+        }
+
+        // 이렇게 돌리면 search 값을 가져올 수 없다
+        $.each(boardObj.values, function(index, obj){
+            console.log(index + ", no : " + obj.no + ", " + obj.title);
+        }) 
+
+        $.each(boardObj, function(key, values){    //객체를 each하면, key, value를 return
+            if(typeof(values) == "object"){        //객체일 경우
+                $.each(values, function(index, obj){
+                    console.log(index + ", no : " + obj["no"] + ", " + obj["title"]);
+                });
+            } else {                               //배열일 경우
+                console.log(key + " / " + valuse);
+            }
+        });
+    })
+
+    </script>   
+</head>
+
+
+<body>
+    <p>java</p>
+    <p>jsp</p>
+    <p>oracle</p>
+    <p>jquery</p>
+    <input type="button" value="클릭" id="btn">
+</body>
+
+
+</html>

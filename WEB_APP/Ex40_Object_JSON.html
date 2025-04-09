@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>Insert title here</title>
+ <script type="text/javascript">
+    let myObj = {
+                name : "john", 
+                age : 30, 
+                city : "seoul"
+                }
+    console.log(myObj);
+    // 서버 전송 시 데이터 형태
+    // login.jsp?name=john&age=30&city=seoul
+
+    
+    // json 객체 데이터 >> 문자열 변환
+    let strobj = JSON.stringify(myObj);
+    console.log(strobj);  
+    console.log(typeof(strobj));    //string
+
+    // 문자열 >> json 객체 데이터 변환 (문자열이 json 형태여야 변환 가능 : 속성값이 쌍따옴표"" 안에 있어야 함)
+    let stringStr = '{"name":"john","age":30,"city":"seoul"}';
+    console.log(stringStr);
+    console.log(typeof(stringStr));
+
+    // 문자열 >> json 변환환
+    let myJson = JSON.parse(stringStr);
+    console.log(myJson);
+    console.log(myJson.name);   
+    console.log(myJson["name"]);
+    console.log(typeof(myJson));
+    
+    /*
+                html > index.html 
+                css > common.css
+                javascript > common.js
+                json > common.json >> 형식(MIME) > application/json
+                xml > common.xml
+    */
+    
+    let myCars;
+    myCars = {"name":"john", "age":30, 
+        // 객체는 배열 및 객체를 가질 수 있다
+        "cars":[
+            {"name":"Ford", "model":["mustang", "Focus"]},
+            {"name":"BMW", "model":["520", "x5","x6"]},
+            {"name":"Fiat", "model":["500", "panda"]}
+        ]
+    }
+    
+    // json or xml >> 화면에 띄우기
+    console.log(myCars);
+    console.log(myCars.cars);
+    console.log("**********");
+    for(let index in myCars.cars){
+        // console.log(myCars.cars[index].name + " - ") + myCars.cars[index].model;
+        document.write(myCars.cars[index].name);
+        for(let index2 in myCars.cars.model){
+            // console.log("Model : " + myCars.cars[index].model[index2]);
+            document.write("Model : " + myCars.cars[index].model[index2])
+        }
+    }
+
+ </script> 
+
+</head>
+ <body>
+
+</body>
+</html>

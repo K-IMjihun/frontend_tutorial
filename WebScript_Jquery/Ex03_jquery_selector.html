@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    
+    $(document).ready(function(){
+            // >선택자(자식선택자) : body 자식 객체 전부
+        $('body > *').css('color','gold');
+        $('div > *').css('color','red');
+            // 속성선택자 : input의 text 타입
+        $('input[type=text]').css('color','green');
+
+        // 바닐라 JS
+        // InnerHTML, innerText : value 속성이 없는 태그 안쪽에 값을 넣음(div, p, span...)
+        // document.get...id("name").value : value 속성이 있는 태그의 value값을 넣음
+
+        // jquery
+        // val(), text(), html() >> 값을 read, write 할 수 있다(getter, setter 역할)
+        // val('홍길동')    >> write(setter);
+        // val()            >> read(getter);
+
+        // $('#userid').val() >> userId의 value값 return
+        // $('#userid').val("world") >> userId의 value 값이 "world"로 바뀜
+        
+        console.log($('input[type=text]').val());   // DOM에서 처음만난 객체만 read
+        $('input[type=text]').val("DDD");           // 모든 객체를 write
+    })
+    </script>   
+</head>
+    <body>
+        <div>
+            <ul>
+                <li>사과</li>
+                <li>배</li>
+                <li>수박</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>사과2</li>
+                <li>배2</li>
+                <li>수박2</li>
+            </ul>
+        </div>
+        <input type="text" value="AAA">
+        <input type="text" value="BBB">
+        <input type="text" value="CCC">
+        <input type="password">
+        <input type="radio">
+        <input type="file">
+        <hr>
+        <table>
+            <tr>
+                <td>이름</td>
+                <td>나이</td>
+                <td>취미</td>
+            </tr>
+            <tr>
+                <td>홍길동</td>
+                <td>50</td>
+                <td>훔치기</td>
+            </tr>
+            <tr>
+                <td>이순신</td>
+                <td>10</td>
+                <td>싸움</td>
+            </tr>
+            <tr>
+                <td>학생</td>
+                <td>30</td>
+                <td>잠자기</td>
+            </tr>
+        </table>
+        <hr>
+        <select>
+            <option>농구</option>
+            <option>축구</option>
+            <option>야구</option>
+            <option>배구</option>
+        </select>	
+    </body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>앨범 작성</title>
+  <style>
+    body {
+      background-color: f6f6f6;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #8473e4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: monospace;
+    }
+
+    button:hover {
+      background-color: #6d5fd3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>앨범 삭제</h2>
+    <form id="albumForm">
+      <label for="id">게시글 ID</label>
+      <input type="text" id="id" name="id" value = "">
+      <a href="Ex14_Quiz.html">
+        <button type="submit" onclick="deleteAlbum(event)">제출</button>
+      </a>
+    </form>
+  </div>
+
+  <script>
+  async function deleteAlbum(e) {
+  const id = document.getElementById("id").value;
+    const url = "https://jsonplaceholder.typicode.com/albums/" + id;
+    const res = await fetch(url, {
+      method: "DELETE"
+    });
+    if (res.ok) {
+      console.log("앨범 삭제 성공");
+    } else {
+      console.error("삭제 실패, 상태 코드:", res.status);
+    }
+  }
+  </script>
+
+</body>
+</html>

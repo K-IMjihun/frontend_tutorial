@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+        // jquery의 이벤트 동적처리( on(), off() )
+        // jquery는 대부분 파라미터값을 json으로 전달
+        // $('p').on(function(){ });  //js의 addEventLister
+        $('p').on( 
+            {   //json 객체 : {}
+                mouseenter:function(){$(this).css('background-color', 'red')},
+                mouseleave:function(){$(this).css('background-color', 'green')},
+                click:function(){$(this).css('background-color', 'blue')}
+            }
+        );
+        
+        $('button').click(function(){
+            $('p').off('click');
+        })
+        
+    });
+    </script>   
+</head>
+
+<body>
+    <p>함수 사용 다중이벤트 처리</p>
+    <hr>
+    <button id = btn>이벤트 제거</button>
+</body>
+</html>

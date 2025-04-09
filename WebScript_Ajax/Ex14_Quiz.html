@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="board.css">
+</head>
+<body>
+    <div id="navi-container"></div>
+    <section class="notice">
+        <div class="page-title">
+              <div class="container">
+                  <h3>게시판</h3>
+              </div>
+          </div>
+          <div id="board-search">
+              <div class="container">
+                  <div class="search-window">
+                      <form action="">
+                          <div class="search-wrap">
+                              <label for="search" class="blind">내용 검색</label>
+                              <a href="Ex14_Quiz_create.html">
+                                <button type="button" class="btn-dark">등록</button>
+                              </a>
+                              <a href="Ex14_Quiz_update.html">
+                                <button type="button" class="btn-dark">수정</button>
+                              </a>
+                              <a href="Ex14_Quiz_delete.html">
+                                <button type="button" class="btn-dark">삭제</button>
+                              </a>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          <div id="board-list">
+              <div class="container">
+                  <table class="board-table">
+                      <thead>
+                      <tr>
+                        <th scope="col" class="th-num">id</th>
+                        <th scope="col" class="th-date">userId</th>
+                          <th scope="col" class="th-title">title</th>
+                      </tr>
+                      </thead>
+                      <tbody id = "table">
+                        <tr>
+                        </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      
+      </section>
+    <script type="text/javascript">
+        async function getAlbums() {
+            
+            const res = await fetch("https://jsonplaceholder.typicode.com/albums");
+            const payload = await res.json();
+            console.log(payload);
+
+            let table = document.getElementById("table");
+                payload.forEach(item => {
+                    let row = document.createElement("tr");
+                    
+                    let tCol = document.createElement("td");
+                    tCol.innerHTML = item.id;
+                    let cCol = document.createElement("td");
+                    cCol.innerHTML = item.userId;
+                    let pCol = document.createElement("td");
+                    pCol.innerHTML = item.title;
+
+                    row.appendChild(tCol);
+                    row.appendChild(cCol);
+                    row.appendChild(pCol);
+                    table.appendChild(row);
+
+                });
+            }
+
+        getAlbums();
+    </script>
+</body>
+</html>

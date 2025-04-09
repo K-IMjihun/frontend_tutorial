@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //  fetch("https://jsonplaceholder.typicode.com/posts", {    //fetch의 두번째 파라미터 찾아보기
+        //     //옵션 : json 객체 형태 지정
+        //     method:"POST",
+        //     header:{"Content-Type":"application/json"},
+        //     //body 안에 payload(전송되는 데이터) 넣기
+        //     body:JSON.stringify({
+        //         title:"Test",
+        //         body:"i am superman",
+        //         userId:1
+        //     }),
+        // })
+        // .then(response => response.json())
+        // .then(data => console.log(data))
+        async function run() {
+            const res = await fetch("https://jsonplaceholder.typicode.com/posts", {    //fetch의 두번째 파라미터 찾아보기
+            //옵션 : json 객체 형태 지정
+            method:"POST",
+            header:{"Content-Type":"application/json"},
+            //body 안에 payload(전송되는 데이터) 넣기
+            body:JSON.stringify({
+                title:"Hi",
+                body:"Nice",
+                userId:1
+            }),
+        })
+        const payload = await res.json();
+        console.log(payload);
+        
+        }
+        run();
+    </script>
+</body>
+</html>

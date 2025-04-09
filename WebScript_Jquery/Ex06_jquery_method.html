@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    .redcolor{color:red}
+    .bluecolor{color:blue}
+    .greencolor{color:green}
+    .whitecolor{color:white}
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    /*
+    append() - Inserts content at the end of the selected elements
+    prepend() - Inserts content at the beginning of the selected elements
+    after() - Inserts content after the selected elements
+    before() - Inserts content before the selected elements
+    */
+
+    $(function(){
+        // 클래스 추가(이전의 클래스를 지우지 않고 추가)
+        $('td:contains("홍길동")').addClass('redcolor');
+            // 홍길동과 같은 레벨(나이 50, 취미 훔치기)의 클래스 변경
+        $('td:contains("홍길동")').siblings().addClass('bluecolor')
+        .parent()   // 부모객체에 접근
+        .find('td:eq(0)')   //자식의 첫번째 객체(홍길동)
+        .addClass('greencolor');    // 필터 함수(찾기)
+
+        $('#btnclick').on(
+            {
+                click:function(){alert('click');}
+
+            }
+    );
+
+    //stylediv에 on 함수 사용
+    // mouseover >> 현재 div에 addClass(greencolor),
+    // mouseout removeClass greencolor bluecolor 추가
+    // json 객체 형태로
+    $('#stylediv').on({
+        mouseover:function(){$(this).addClass('greencolor')},
+        mouseout:function(){$(this).removeClass('greencolor').addClass('bluecolor')}
+    }
+
+    );
+
+
+
+    });
+    </script>   
+</head>
+
+<body>
+    <table>
+		<tr>
+			<td>이름</td>
+			<td>나이</td>
+			<td>취미</td>
+		</tr>
+		<tr>
+			<td>홍길동</td>
+			<td>50</td>
+			<td>훔치기</td>
+		</tr>
+		<tr>
+			<td>이순신</td>
+			<td>10</td>
+			<td>싸움</td>
+		</tr>
+		<tr>
+			<td>학생</td>
+			<td>30</td>
+			<td>잠자기</td>
+		</tr>
+
+        <hr>
+	<h3>이벤트</h3>
+	<a href="http://www.naver.com">네이버 바로가기</a>
+	<hr>
+	<div id="btnclick">click</div>
+	<div id="stylediv">스타일적용</div>
+	</table>
+
+</body>
+
+</html>

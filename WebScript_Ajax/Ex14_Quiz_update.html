@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>앨범 작성</title>
+  <style>
+    body {
+      background-color: f6f6f6;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #8473e4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: monospace;
+    }
+
+    button:hover {
+      background-color: #6d5fd3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>앨범 수정</h2>
+    <form id="albumForm">
+      <label for="id">게시글 ID</label>
+      <input type="text" id="id" name="id" value = "">
+
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" value = "">
+      <a href="Ex14_Quiz.html">
+        <button type="submit" onclick="updateAlbum(event)">제출</button>
+      </a>
+    </form>
+  </div>
+
+  <script>
+    async function updateAlbum(e) {
+      e.preventDefault();
+      const id = document.getElementById("id").value;
+      const title = document.getElementById("title").value;
+      
+      const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
+      
+      const res = await fetch(url, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ title, id })
+      });
+      
+      const payload = await res.json();
+      console.log(payload);
+    }
+  </script>
+
+</body>
+</html>

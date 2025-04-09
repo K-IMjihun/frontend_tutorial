@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+            // 비동기 함수 
+            // 1. (setTimeout())
+        // function delay(sec, callback){
+        //     setTimeout(() =>{
+        //        callback(new Date()); 
+        //     }, sec * 1000);
+        // }
+
+        // console.log("delay start", new Date());
+
+        // delay(2, (result) => {console.log(result)});
+
+        // console.log("delay end");
+
+            // 2. 일정한 간격으로 3개의 함수 생성 및 출력
+            // 2초 뒤, 3개의 함수가 출력되지만, 순서 보장 X
+        // function delay(sec, callback){
+        //     setTimeout(() => {
+        //         callback(new Date());
+        //     }, sec * 1000);
+
+        // } 
+        // delay(2, (result) =>{console.log(1, result)});
+        // delay(2, (result) =>{console.log(2, result)});
+        // delay(2, (result) =>{console.log(3, result)});
+
+            // 3. 3개의 비동기 함수가 순차적으로(한번에 X)
+            // 함수안에 함수를 만들고 ... 콜백 헬 발생생
+        // function delay(sec, callback){
+        //     setTimeout(() =>{
+        //        callback(new Date()); 
+        //     }, sec * 1000);
+        // }
+        //     //// 콜백지옥 발생
+        // delay(2, (result) => {
+        //     console.log(1, result); // 2초
+        //         delay(2, (result) => {
+        //             console.log(2, result); // 4초
+        //                 delay(2, (result) => {
+        //                     console.log(3, result); // 6초 후 출력
+        //                 })
+        //         })
+        // })
+
+        // 생산 코드
+    // function myDisplayer(some) {
+    //     document.getElementById("demo").innerHTML = some;
+    // }
+    // // 함수 두개를 파라미터로 받음
+    // let myPromise = new Promise(function(myResolve, myReject) {
+    // let x = 0;
+    // if (x == 0) {
+    //     myResolve("OK"); // 성공시 호출
+    // } else {
+    //     myReject("Error"); // 실패시 호출
+    // }
+    // });
+
+    //     // 소비 코드
+    // myPromise.then(
+    // function(value) {myDisplayer(value);},
+    // function(error) {myDisplayer(error);}
+    // );
+
+        // promise 기본 코드 작성
+    // function delayPromise(sec){
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() =>{
+    //             resolve(new Date());
+    //         }, sec * 1000);
+    //     })
+    // }
+
+    // delayPromise(1)
+    //     .then(result => console.log(1, result))
+    //     .catch(error => console.log(error));
+
+
+    
+    // 정상적인 방법
+    // function delayPromise(sec){
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() =>{
+    //             resolve(new Date());
+    //         }, sec * 1000);
+    //     })
+    // }
+
+    // delayPromise(1)
+    //     .then(result => {
+    //         console.log(1, result)
+    //         return (delayPromise(1));})// return값을 지정해주면 then으로 감
+    //     .then(result => {
+    //         console.log(2, result)
+    //         return (delayPromise(1));})
+    //     .then(result => {
+    //         console.log(3, result);})
+    //     .catch();
+
+        // delayPromise(1)
+        // .then(result => {
+        //     console.log(1, result)
+        //     return (delayPromise(1));})// return값을 지정해주면 then으로 감
+        // .then(result => {
+        //     console.log(2, result)
+        //     return (delayPromise(1));})
+        // .then(result => {
+        //     console.log(3, result)
+        //     return "kosa^^^";}) // promise 객체를 return하지 않으면, 지연없이 출력
+        // .then(result => {
+        //     console.log(result);
+        // }).catch();
+        function myDisplayer(some) {
+            document.getElementById("demo").innerHTML = some;
+            }
+
+            let myPromise = new Promise(function(myResolve, myReject) {
+            let req = new XMLHttpRequest();
+            req.open('GET', "mycar.html");
+            req.onload = function() {
+                if (req.status == 200) {
+                    myResolve(req.response);
+                } else {
+                    myReject("File not Found");
+                }
+            };
+            req.send();
+            });
+
+            myPromise.then(
+                function(value) {myDisplayer(value);},
+                function(error) {myDisplayer(error);}
+            );
+    </script>
+</head>
+<body>
+</body>
+</html>

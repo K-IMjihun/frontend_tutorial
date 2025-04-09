@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+ <meta charset="UTF-8">
+ <title>Insert title here</title>
+ <style>
+</style>
+
+</head>
+<body>
+    <button class = "btn"> click me</button>
+</body>
+<script type="text/javascript">
+
+    // querySelector = css의 선택자와 동일한 역할. 
+    const btn = document.querySelector('.btn');
+
+    // onclick으로 같은 이벤트를 동시에 걸면 마지막 이벤트가 덮어 한번만 수행된다(button clicked 2 출력)
+    // btn.onclick = function(){
+    //     alert("button clicked 1");
+    // }
+    // btn.onclick = function(){
+    //     alert("button clicked 2");
+    // }
+
+    // addEventListener 로 여러개의 이벤트 구현 시, 모두 수행된다
+    btn.addEventListener('click', function(){
+        alert("button clicked 1");
+    })
+
+    btn.addEventListener('click', function(){
+        alert("button clicked 2");
+    })
+</script>
+</html>

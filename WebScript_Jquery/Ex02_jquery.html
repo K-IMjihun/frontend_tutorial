@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+        // 바닐라 JS
+        // 모든 요소가 메모리에 로딩되고 나서(DOM으로 등록된 후) 함수를 실행하겠다
+    // document.onload = function(){
+    //     document.getElementById("btn").onclick=function(){};
+    // }
+    //Jquery
+    $(document).ready(function(){
+        $('#btn').click(function(){
+            $(this).hide();
+        });
+    });
+    </script>   
+</head>
+    <body>
+        <input type = "button" id = "btn" value="버튼">
+    </body>
+</html>

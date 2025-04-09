@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+    <button onclick="sendData()">비동기요청</button>
+    <div id = a></div>
+    <script type="text/javascript">
+        /*
+              1. XMLHttpRequest 객체 얻기
+              2. onreadystatechange 이벤트 핸들러 구현 (함수)
+              3. 요청 정보 ( open() )
+              4. 요청 보내기 (send() )
+              5. 응답 처리 (Text(JSON), xml )
+        */
+        
+        
+            //1. XMLHttpRequest 객체 얻기
+            let xhr = null;
+            function getInstance(){
+                if(window.XMLHttpRequest){
+                    xhr = new XMLHttpRequest;
+                  }else if(window.ActiveXObject){ //IE
+                    console.log("IE");
+                  }else{
+                    throw new Error("Ajax 비동기 지원하지 않아요");
+                }
+                return xhr;
+            }
+            
+            function handlerStateChange(){
+                if(xhr.readyState == 4){ //서버에서 응답이 왔다면
+                          if(xhr.status >= 200 && xhr.status < 300){ //응답이 성공적이라면
+                              //서버가 클라이언트에게 전달한 (응답한) 데이터 형식
+                              //1. Text(html,txt,css,json) 
+                              //    >> xmlHttpRequest 내부에 있는 ResponseText로 받음 
+                              //2. xml 
+                              //    >> xmlHttpRequest 내부에 있는 responseXml로 받음
+                              console.log(xhr.responseText);
+                              const data = JSON.parse(xhr.responseText); // 문자열 → 객체 배열
+
+                            // title만 추출
+                            const titles = data.map(item => item.title);
+                            document.getElementById("a").innerHTML = titles.join('<br>');;
+                            
+                          }else{
+                              console.log("비정상 응답 : " + xhr.status);
+                          }
+                      }
+            }
+            
+            function sendData(){
+                xhr = getInstance();
+                xhr.onreadystatechange = handlerStateChange;    // 이벤트에 함수를 선언할 때 괄호 X
+                xhr.open("GET", "https://jsonplaceholder.typicode.com/posts");
+                xhr.send();     // 비동기 전송 시작
+            }
+        
+        </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+<p id = "demo"></p>
+
+<script type="text/javascript">
+    const cars = ["BMS", "volvo", "Mini"]
+
+    // in : number(index) 가져옴
+    for(let index in cars){
+        console.log(index + " / " + cars[index]);
+    }
+
+    let text = "";
+    // of : 값(value) 를 가져옴
+    for(let value of cars){
+        text += value + "<br>"
+    }
+    document.getElementById("demo").innerHTML = text;
+</script>
+</body>
+

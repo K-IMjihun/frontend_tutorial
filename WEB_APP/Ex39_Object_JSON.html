@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>Insert title here</title>
+ <script type="text/javascript">
+/*
+    JSON >> {} >> const obj = {} >> 
+    1. obj.속성명
+    2. obj[key(속성명)]
+    이기종 간 데이터 교환이 목적
+    날씨정보, 지하철 정보, 공공 데이터 OPEN API 제공 >> xls, csv, xml, json 형태로 제공받음
+
+    api로 받아온 JSON DATA 가공
+*/
+    // 객체배열
+    let students = [];
+    students.push({이름:"홍길동", 국어:80, 영어:60}); // JSON 객체 0번째에 삽입
+    students.push({이름:"아무개", 국어:100, 영어:50}); 
+    students.push({이름:"이순신", 국어:10, 영어:100});     
+ 
+    for(let index in students){
+        students[index].getSum = function(){
+            return this.국어 + this.영어;
+        }
+        students[index].getAvg = function(){
+            return this.getSum() / 2;
+        }
+    }
+    console.log(students);
+    for(let index in students){
+        console.log(students[index].이름);
+        console.log(students[index].getSum());
+        console.log(students[index].getAvg());
+    }
+
+    // const key = b0d49eca6457bb41dc3a5b0ca5c71207;
+    
+ </script> 
+
+</head>
+ <body>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+        $('#btn1').click(function(){
+            console.log("test " + $('#test').text()); // 태그 text 형태, 출력 O
+        })
+
+        $('#btn2').click(function(){
+            console.log("test " + $('#test').html()); // 태그를 인정, 출력 X
+        })
+        // $('#btn3').click(function(){
+        //     $('#test').text('<div>aaaa</div>');       // 태그 text 형태, 출력 O
+        // })
+
+        $('#btn3').click(function(){
+            $('#test').html('<div>aaaa</div>');       // 태그 text 형태, 출력 O
+        })
+
+
+    })
+
+    </script>   
+</head>
+
+
+<body>
+    <p id="test">안녕하세요<b>정말</b>방가방가</p>
+	<button id="btn1">show text</button>
+	<button id="btn2">show html</button>
+	<button id="btn3">html</button>
+</body>
+
+
+</html>
