@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		
+			$('#btn').click(function(){
+				 //비동기 함수
+				 $.ajax(
+						{
+							url:"http://192.168.4.184:8090/WebScript_Jquery_Ajax/Ex09_GSON.jsp",
+							type:"GET",
+							dataType:"JSON", 
+							success:function(employees){
+								console.log(employees);
+                                $.each(employees, function(index, obj){
+                                    console.log(index);
+                                    console.log(obj);
+
+                                })
+							},
+							error:function(xhr){
+								console.log(xhr.status);
+							}
+						}		 
+				 );
+			});	
+});
+	</script>
+	
+</head>
+<body>
+	<button id="btn">emplist</button>
+    
+    <div>사번 이름 급여 직무 커미션</div>
+    <table></table>
+</body>
+</html>

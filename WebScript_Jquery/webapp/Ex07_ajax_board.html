@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css" >
+    .wrap-loading{ 
+        /*로딩 이미지*/
+        position: fixed;
+        top:50%;
+        left:50%;
+        margin-left: -21px;
+        margin-top: -21px;
+    }
+
+    .display-none{ /*감추기*/
+       display:none;
+    }
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript">
+        $(function(){
+            $.ajax(
+                {
+                    url:"Ex07_board.json",
+                    type:"post",
+                    dataType:"json",
+                    // 응답이 왔고, 무사히 실행된 경우
+                    success:function(data){
+                        console.log(data);
+                        $.each(data,function(index, obj){
+                            $('#treedata').append(
+                            obj.id + "/" + 
+                            obj.name + "/" + 
+                            obj.title + "/" + 
+                            obj.content + "<br>");
+                        });
+                    },
+                    // 응답이 왔지만 무사히 실행되지 않은 경우(500, 404, 403 ...)
+                    error:function(xhr){
+                        console.log(xhr.status);
+                    },
+                    // readyState = 3, 서버에서 데이터가 오는 중 
+                    beforeSend:function(){
+                        // 로딩이미지 및 다른작업 하지 못하게
+                        console.log("img loading...");
+                        $('.wrap-loading').removeClass('display-none'); // 화면에 출력
+                    },
+                    // readyState = 4, 응답이 도착했을 경우
+                    complete:function(){ 
+                        // 이미지 숨김처리
+                        console.log("image display none...");
+                        $('.wrap-loading').addClass('display-none');
+                    }
+                }
+            )
+
+        })
+    </script>   
+</head>
+
+
+<body>
+    <!--  https://loading.io/ -->
+	<div class="wrap-loading display-none">
+	    <div><img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif" /></div>
+	</div>
+	<div id="treedata" >
+	</div>
+
+</body>
+
+
+</html>

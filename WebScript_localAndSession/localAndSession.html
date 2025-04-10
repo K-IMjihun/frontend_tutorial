@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>localStorage 예제</title>
+</head>
+<body>
+  <h1> 안녕하세요, <span id="user-name">방문자</span>님!</h1>
+  <input type="text" id="nameInput" placeholder="이름을 입력하세요">
+  <button id="saveBtn">저장</button>
+
+  <script>
+    // 저장
+    localStorage.setItem('name', 'Alice');
+    sessionStorage.setItem('theme', 'dark');
+
+    // 불러오기
+    const name = localStorage.getItem('name');           // "Alice"
+    const theme = sessionStorage.getItem('theme');       // "dark"
+
+    // 삭제
+    localStorage.removeItem('name');
+    sessionStorage.removeItem('theme');
+
+    // 전체 삭제
+    localStorage.clear();
+    sessionStorage.clear();
+    
+    // 저장 버튼 클릭 시 이름을 저장
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      const name = document.getElementById('nameInput').value;
+      localStorage.setItem('userName', name);
+      document.getElementById('user-name').textContent = name;
+    });
+
+    // 페이지 로드시 localStorage에서 이름 불러오기
+    const savedName = localStorage.getItem('userName');
+    if (savedName) {
+      document.getElementById('user-name').textContent = savedName;
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>sessionStorage 예제</title>
+</head>
+<body>
+  <h2> 메모</h2>
+  <textarea id="memo" rows="6" cols="40" placeholder="입력하세요..."></textarea>
+
+  <script>
+    const memo = document.getElementById('memo');
+
+    // 입력할 때마다 저장
+    memo.addEventListener('input', () => {
+      sessionStorage.setItem('tempMemo', memo.value);
+    });
+
+    // 페이지 로드시 복원
+    const savedMemo = sessionStorage.getItem('tempMemo');
+    if (savedMemo) {
+      memo.value = savedMemo;
+    }
+  </script>
+</body>
+</html>
